@@ -1,0 +1,40 @@
+# After running any code changes make sure to click the button "Restart Connection" above first.
+# Also make sure to click Reset in the simulator to refresh the connection.
+
+car_parameters = {"throttle": 0, "steer": 0, "brake": 0}
+
+def control(pos_x, pos_y, time, velocity):
+    """ Controls the simulated car"""
+    global car_parameters
+
+
+    if(time < 0.50):
+        car_parameters["throttle"] = -1.0
+        car_parameters["steer"] = 0
+        car_parameters["brake"] = 0
+    elif(35 < pos_y < 40):
+        car_parameters["throttle"] = -1.0
+        car_parameters["steer"] = 25
+        car_parameters["brake"] = 0
+    elif(32 < pos_y < 34.56):
+        car_parameters["throttle"] = -1.0
+        car_parameters["steer"] = -25.0
+        car_parameters["brake"] = 0
+    elif(31.24 < pos_y < 31.50):
+        car_parameters["throttle"] = 1.0
+        car_parameters["steer"] = 25
+        car_parameters["brake"] = 0
+    elif(31.51 < pos_y < 31.98):
+        car_parameters["throttle"] = 0
+        car_parameters["steer"] = 0
+        car_parameters["brake"] = 1
+    else:
+        car_parameters["throttle"] = 0
+        car_parameters["steer"] = 0
+        car_parameters["brake"] = 1
+        
+        
+    return car_parameters
+    
+import src.simulate as sim
+sim.run(control)
